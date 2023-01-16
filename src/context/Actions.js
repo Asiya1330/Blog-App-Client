@@ -16,3 +16,9 @@ export const Logout = () => ({
     tyep: actionTypes.LOGOUT
 })
 
+
+export const FetchPosts = () => ({
+    tyep: actionTypes.FETCH_POSTS
+})
+
+

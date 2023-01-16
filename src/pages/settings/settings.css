@@ -78,3 +78,7 @@ cursor: pointer;
 
     cursor: pointer;
 }
+.settingSubmit:disabled{
+    background-color: rgb(97, 134, 134);
+    cursor: not-allowed;
+}
