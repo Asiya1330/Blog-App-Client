@@ -1,5 +1,6 @@
 .singlePost {
     flex: 9;
+    /* position: relative; */
 }
 
 .singlePostWraper {
@@ -28,6 +29,7 @@
 
 .singlePostIcon {
     margin: 10px;
+    cursor: pointer;
 }
 
 .singlePostIcon:first-child {

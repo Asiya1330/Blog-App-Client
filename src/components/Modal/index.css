@@ -1,0 +1,50 @@
+.modalContainer {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* left: 13%; */
+    /* right: 13%; */
+    top: 50px;
+    background-color: white;
+    width: 100%;
+    height: calc(100vh - 50px);
+    border-radius: 7px;
+    /* margin: 20px; */
+}
+
+.modalWrapper {
+    width: 100%;
+}
+
+.postUpdateBtn {
+    float: right;
+    width: 100px;
+    align-self: center;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: teal;
+    padding: 10px;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
+}
+
+.upPost>label {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.upPost>input {
+    color: gray;
+    margin: 10px 0;
+    height: 30px;
+    border: none;
+    width: 60%;
+    border-bottom: 1px solid lightgray;
+}
+.upPost>input:focus{
+    outline: none;
+    border-bottom: 1px solid grey;
+}

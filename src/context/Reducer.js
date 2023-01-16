@@ -27,8 +27,21 @@ const Reducer = (state, action) => {
                 isFetching: false,
                 error: false
             };
+
+
+        case actionTypes.FETCH_POSTS:
+            return {
+                posts: action.posts,
+                isFetching: false,
+                error: false
+            };
+        case actionTypes.UPDATE_POST_MODAL:
+            return payload;
+
         default:
             return state
     }
 }
+
+
 export default Reducer

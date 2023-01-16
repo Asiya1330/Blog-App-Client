@@ -1,28 +1,68 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './singlePost.css'
+import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import moment from 'moment';
+import { Context } from '../../context/Context';
+import Modal from '../Modal';
+
 
 export default function SinglePost() {
+    const { user } = useContext(Context);
+
+    const location = useLocation('');
+    const navigate = useNavigate();
+
+    const [post, setPost] = useState([]);
+    const [username, setUsername] = useState('');
+
+    const [title, setTitle] = useState('');
+    const [desc, setDesc] = useState('')
+    const [updateMode, setUpdateMode] = useState(false)
+
+    useEffect(() => {
+        const getPost = async () => {
+            const result = await axios.get(location.pathname);
+            const userData = await axios.get(`/user/${result.data.authorId}`);
+            setPost(result.data);
+            setUsername(userData.data.username);
+        }
+        getPost();
+    }, [location.pathname, username]);
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(location.pathname, {
+                data: { authorId: user._id }
+            });
+            navigate('/')
+        }
+        catch (e) {
+            console.log(e.response.data);
+        }
+    }
     return (
         <div className='singlePost'>
             <div className="singlePostWraper">
-                <img className='singlePostImg' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFaF7BYd2iB4WGRrOC0k_D_FGasBJDxF6828D1LBei&s" alt="" />
-                <h1 className='singlePostTitle'>Lorem ipsum dolor sit amet consectetur.
-
+                <img className='singlePostImg'
+                    src={post.postThumbnail ? `http://localhost:3000/images/${post.postThumbnail}` : `https://dummyimage.com/250/ffffff/000000`} alt="" />
+                <h1 className='singlePostTitle'>{post.title}
                     <div className="singlePostEdit">
-                        <i className="singlePostIcon far fa-edit"></i>
-                        <i className="singlePostIcon far fa-trash-alt"></i>
-
+                        <i className="singlePostIcon far fa-edit" onClick={()=>setUpdateMode(true)}></i>
+                        <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}></i>
                     </div>
                 </h1>
                 <div className="singlePostInfo">
-                    <span className="singlePostAuthor">Author: <b>Asiya</b></span>
-                    <span className="singlePostDate">1 hour ago</span>
-
+                    <span className="singlePostAuthor">Author: <b>{username}</b></span>
+                    <span className="singlePostDate">{moment(post.createdAt).fromNow()}</span>
                 </div>
                 <p className='singlePostBody'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore corporis suscipit repudiandae obcaecati officia dolorem maxime dolore, et iste voluptatum adipisci. Doloribus, labore! Consequatur dolorem non dolore quo nulla est!Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et magnam neque, harum dolorum fuga eveniet non fugit corrupti, adipisci deleniti quos amet maxime corporis? Deleniti quae ad beatae iste consectetur.
+                    {post.description}
                 </p>
             </div>
+            { updateMode &&
+            <Modal />
+            }
         </div>
     )
 }

@@ -14,7 +14,6 @@ export default function Login() {
     const passRef = useRef();
 
     const { dispatch, isFetching } = useContext(Context);
-    // const location = useLocation();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -26,17 +25,13 @@ export default function Login() {
                 password: passRef.current.value
             })
             dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: result.data });
-            
             navigate('/');
-
-
         } catch (error) {
             console.log(error);
             dispatch({ type: actionTypes.LOGIN_FAILURE });
         }
 
     }
-    console.log();
     return (
         <div className='login'>
             <span className='LoginTitle'> Login</span>

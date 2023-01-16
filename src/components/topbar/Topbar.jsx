@@ -55,8 +55,9 @@ export default function Topbar() {
                     user ?
                         (
                             <Link to='settings'>
-
-                                <img className='topImage' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3vvVZ-pOGsyhaNEm9s-tm96lh7OGxJrpPQ&usqp=CAU" />
+                                <img
+                                    className='topImage'
+                                    src={user.profilePic || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3vvVZ-pOGsyhaNEm9s-tm96lh7OGxJrpPQ&usqp=CAU"} />
                             </Link>
                         )
                         :
