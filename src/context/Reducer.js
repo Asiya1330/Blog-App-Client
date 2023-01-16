@@ -27,8 +27,32 @@ const Reducer = (state, action) => {
                 isFetching: false,
                 error: false
             };
+
+
+        case actionTypes.FETCH_POSTS:
+            return {
+                posts: action.posts,
+                isFetching: false,
+                error: false
+            };
+        // case actionTypes.REGISTER_SUCCESS:
+        //     return {
+        //         user: payload,
+        //         isFetching: false,
+        //         error: false
+        //     };
+        // case actionTypes.REGISTER_FAILURE:
+        //     return {
+        //         user: null,
+        //         isFetching: false,
+        //         error: true
+        //     };
+
+
         default:
             return state
     }
 }
+
+
 export default Reducer
