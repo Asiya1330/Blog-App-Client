@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import moment from 'moment';
 import { Context } from '../../context/Context';
+import Modal from '../Modal';
 
 
 export default function SinglePost() {
@@ -14,6 +15,10 @@ export default function SinglePost() {
 
     const [post, setPost] = useState([]);
     const [username, setUsername] = useState('');
+
+    const [title, setTitle] = useState('');
+    const [desc, setDesc] = useState('')
+    const [updateMode, setUpdateMode] = useState(false)
 
     useEffect(() => {
         const getPost = async () => {
@@ -43,7 +48,7 @@ export default function SinglePost() {
                     src={post.postThumbnail ? `http://localhost:3000/images/${post.postThumbnail}` : `https://dummyimage.com/250/ffffff/000000`} alt="" />
                 <h1 className='singlePostTitle'>{post.title}
                     <div className="singlePostEdit">
-                        <i className="singlePostIcon far fa-edit" ></i>
+                        <i className="singlePostIcon far fa-edit" onClick={()=>setUpdateMode(true)}></i>
                         <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}></i>
                     </div>
                 </h1>
@@ -55,6 +60,9 @@ export default function SinglePost() {
                     {post.description}
                 </p>
             </div>
+            { updateMode &&
+            <Modal />
+            }
         </div>
     )
 }
