@@ -9,16 +9,17 @@ export const LoginSuccessfull = (user) => ({
 })
 
 export const LoginFailure = () => ({
-    tyep: actionTypes.LOGIN_FAILURE
+    type: actionTypes.LOGIN_FAILURE
 })
 
 export const Logout = () => ({
-    tyep: actionTypes.LOGOUT
+    type: actionTypes.LOGOUT
 })
 
 
-export const FetchPosts = () => ({
-    tyep: actionTypes.FETCH_POSTS
+export const UpdatePostModal = () => ({
+    type: actionTypes.UPDATE_POST_MODAL,
+    payload: true
 })
 
 
